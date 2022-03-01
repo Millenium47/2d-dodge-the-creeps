@@ -13,11 +13,13 @@ func _ready():
 	hide()
 
 func _process(delta):	
-	position += _get_direction() * speed * delta
+	position += _get_velocity() * delta
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
-	
 
+func _get_velocity():
+	return _get_direction() * speed
+	
 func _get_direction():
 	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
