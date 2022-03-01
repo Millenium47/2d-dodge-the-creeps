@@ -3,6 +3,7 @@ extends Area2D
 export var speed = 400.0 #pixels per second
 
 signal hit
+signal death
 
 var screen_size = Vector2.ZERO
 
@@ -49,4 +50,3 @@ func _on_Player_body_entered(body):
 	hide()
 	$CollisionShape2D.set_deferred("disabled", true)
 	emit_signal("hit")
-	

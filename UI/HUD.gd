@@ -4,7 +4,10 @@ signal start_game
 
 func update_score(score):
 	$ScoreLabel.text = str(score)
-	
+
+func update_health(value):
+	$LifeBar.update_health(value)
+
 func show_message(text):
 	$MessageLabel.text = text
 	$MessageLabel.show()

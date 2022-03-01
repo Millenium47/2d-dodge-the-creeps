@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/Lives.gd" type="Script" id=1]
+[ext_resource path="res://UI/Hearth.tres" type="Texture" id=2]
+
+[node name="LifeBar" type="HBoxContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 84.0
+margin_bottom = 34.0
+rect_scale = Vector2( 3, 3 )
+custom_constants/separation = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="life1" type="TextureRect" parent="."]
+margin_right = 18.0
+margin_bottom = 14.0
+texture = ExtResource( 2 )
+stretch_mode = 3
+
+[node name="life2" type="TextureRect" parent="."]
+margin_left = 18.0
+margin_right = 36.0
+margin_bottom = 14.0
+texture = ExtResource( 2 )
+stretch_mode = 3
+
+[node name="life3" type="TextureRect" parent="."]
+margin_left = 36.0
+margin_right = 54.0
+margin_bottom = 14.0
+texture = ExtResource( 2 )
+stretch_mode = 3

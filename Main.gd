@@ -2,14 +2,17 @@ extends Node2D
 
 export (PackedScene) var enemy_scene 
 
-var score = 0
+var score: = 0
+var life: = 3
 
 func _ready():
 	randomize()
 
 func new_game():
 	score = 0
+	life = 3
 	$HUD.update_score(score)
+	$HUD.update_health(life)
 	
 	get_tree().call_group("enemies", "queue_free")
 	$Player.start($PlayerStartPosition.position)
