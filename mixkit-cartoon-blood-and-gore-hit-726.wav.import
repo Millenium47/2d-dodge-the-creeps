@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mixkit-cartoon-blood-and-gore-hit-726.wav-ed62df125073f6919d739f4f8c5e9417.sample"
+
+[deps]
+
+source_file="res://mixkit-cartoon-blood-and-gore-hit-726.wav"
+dest_files=[ "res://.import/mixkit-cartoon-blood-and-gore-hit-726.wav-ed62df125073f6919d739f4f8c5e9417.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

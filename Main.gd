@@ -3,16 +3,15 @@ extends Node2D
 export (PackedScene) var enemy_scene 
 
 var score: = 0
-var life: = 3
+var health: = 3
 
 func _ready():
 	randomize()
 
 func new_game():
 	score = 0
-	life = 3
 	$HUD.update_score(score)
-	$HUD.update_health(life)
+	$HUD.update_health(health)
 	
 	get_tree().call_group("enemies", "queue_free")
 	$Player.start($PlayerStartPosition.position)
@@ -24,7 +23,11 @@ func new_game():
 	yield($SpawnDelayTimer, "timeout") # wait until signal
 	$ScoreTimer.start()
 	$EnemyTimer.start()
-	
+
+func update_health(health):
+	$HitSound.play()
+	$HUD.update_health(health)
+
 func game_over():
 	$ScoreTimer.stop()
 	$EnemyTimer.stop()

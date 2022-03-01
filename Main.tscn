@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://actors/Enemy.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://UI/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://art/house-in-a-forest-loop.ogg" type="AudioStream" id=5]
 [ext_resource path="res://art/game-over.wav" type="AudioStream" id=6]
+[ext_resource path="res://art/mixkit-falling-hit-on-gravel-756.wav" type="AudioStream" id=7]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -51,8 +52,12 @@ stream = ExtResource( 5 )
 [node name="GameOverSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]
 [connection signal="body_entered" from="Player" to="." method="_on_Player_body_entered"]
-[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="death" from="Player" to="." method="game_over"]
+[connection signal="hit" from="Player" to="." method="update_health"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]

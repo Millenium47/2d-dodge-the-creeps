@@ -1,9 +1,13 @@
 extends Area2D
 
-export var speed = 400.0 #pixels per second
-
 signal hit
 signal death
+signal health_updated
+
+export var speed = 400.0 #pixels per second
+export var max_health = 3
+
+onready var health = max_health
 
 var screen_size = Vector2.ZERO
 
@@ -43,10 +47,19 @@ func _get_direction():
 
 func start(new_position):
 	position = new_position
+	health = max_health
 	show()
 	$CollisionShape2D.disabled = false
 
-func _on_Player_body_entered(body):
-	hide()
+func _on_Player_body_entered(_body):
+	health -= 1
 	$CollisionShape2D.set_deferred("disabled", true)
-	emit_signal("hit")
+	emit_signal("hit", health)
+	
+	if health == 0:
+		emit_signal("death")
+		hide()
+		
+	yield(get_tree().create_timer(1.0), "timeout")
+	$CollisionShape2D.set_deferred("disabled", false)
+	
