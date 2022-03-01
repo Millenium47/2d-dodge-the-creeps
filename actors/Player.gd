@@ -10,6 +10,7 @@ var direction = Vector2.ZERO
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	hide()
 
 func _process(delta):	
 	position += _get_direction() * speed * delta
@@ -37,7 +38,7 @@ func _get_direction():
 	
 	return direction
 
-func _start(new_position):
+func start(new_position):
 	position = new_position
 	show()
 	$CollisionShape2D.disabled = false

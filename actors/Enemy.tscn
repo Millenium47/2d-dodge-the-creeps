@@ -10,9 +10,9 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "walk",
+"name": "swim",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
@@ -20,21 +20,22 @@ animations = [ {
 "name": "fly",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
-"name": "swim",
+"name": "walk",
 "speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 48.0
-height = 36.0
+radius = 40.0
+height = 12.0
 
 [node name="Enemy" type="RigidBody2D" groups=["enemies"]]
 collision_mask = 0
 script = ExtResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.7, 0.7 )
 frames = SubResource( 1 )
 animation = "walk"
 

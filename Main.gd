@@ -2,8 +2,32 @@ extends Node2D
 
 export (PackedScene) var enemy_scene 
 
+var score = 0
+
 func _ready():
 	randomize()
+
+func new_game():
+	score = 0
+	$HUD.update_score(score)
+	
+	get_tree().call_group("enemies", "queue_free")
+	$Player.start($PlayerStartPosition.position)
+	
+	$SpawnDelayTimer.start()
+	$Music.play()
+	$HUD.show_message("Get ready...")
+	
+	yield($SpawnDelayTimer, "timeout") # wait until signal
+	$ScoreTimer.start()
+	$EnemyTimer.start()
+	
+func game_over():
+	$ScoreTimer.stop()
+	$EnemyTimer.stop()
+	$HUD.show_game_over()
+	$Music.stop()
+	$GameOverSound.play()
 
 func _on_EnemyTimer_timeout():
 	var enemy_spawn_location = $EnemyPath/EnemySpawnLocation
@@ -20,3 +44,8 @@ func _on_EnemyTimer_timeout():
 	
 	var velocity = Vector2(rand_range(enemy.min_speed, enemy.max_speed), 0)
 	enemy.linear_velocity = velocity.rotated(direction)
+
+
+func _on_ScoreTimer_timeout():
+	score += 1
+	$HUD.update_score(score)
