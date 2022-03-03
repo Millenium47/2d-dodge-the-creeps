@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://art/player-up-1.png" type="Texture" id=2]
@@ -22,21 +22,6 @@ animations = [ {
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 25.0
 
-[sub_resource type="Animation" id=3]
-resource_name = "hurt"
-tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
-}
-
 [node name="Player" type="Area2D"]
 script = ExtResource( 1 )
 
@@ -47,8 +32,5 @@ animation = "right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/hurt = SubResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]

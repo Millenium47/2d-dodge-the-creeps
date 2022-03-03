@@ -24,8 +24,11 @@ func new_game():
 	$ScoreTimer.start()
 	$EnemyTimer.start()
 
-func update_health(health):
+func lose_health(health):
 	$HitSound.play()
+	update_health(health)
+	
+func update_health(health):
 	$HUD.update_health(health)
 
 func game_over():
@@ -34,6 +37,11 @@ func game_over():
 	$HUD.show_game_over()
 	$Music.stop()
 	$GameOverSound.play()
+
+func heal():
+	if health < 3:
+		health += 1
+		update_health(health)
 
 func _on_EnemyTimer_timeout():
 	var enemy_spawn_location = $EnemyPath/EnemySpawnLocation
